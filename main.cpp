@@ -13,12 +13,12 @@
 
 using namespace std;
 
-void initializeArray(int array[][2], int xSize, int minBound) { // Sets up the array to
+void initializeArray(int data[][2], int xSize, int minBound) { // Sets up the array to
                                                                 // store the processed data
     for (int i = 0; i < xSize; i++) { // Iterates across the "width" of the array
-        array[i][0] = minBound + i; // Starts at the minimum bound and sets the first item in each
+        data[i][0] = minBound + i; // Starts at the minimum bound and sets the first item in each
                                     // sub-array to the value of minBound plus the distance from the min
-        array[i][1] = 0; // Initializes the amount of occurrences of each number to 0
+        data[i][1] = 0; // Initializes the amount of occurrences of each number to 0
     }
 }
 
