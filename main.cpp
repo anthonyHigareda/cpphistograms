@@ -9,6 +9,7 @@
 //
 
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -21,7 +22,7 @@ void initializeArray(int array[][2], int xSize, int minBound) { // Sets up the a
     }
 }
 
-void readData(int data[][2], int xSize) {
+void readData(int data[][2], int xSize) { // Reads data from input, validates it, and stores it in the data array
     int readNumber;
     cin >> readNumber;
     while (cin) { // Loops until input is empty
@@ -40,6 +41,16 @@ void readData(int data[][2], int xSize) {
     }
 }
 
+void drawBars(int data[][2], int xSize) {
+    for (int i = xSize - 1; i >= 0; i--) {
+        cout << setw(3) << data[i][0] << " |";
+        for (int j = 0; j < data[i][1]; j++) {
+            cout << "#";
+        }
+        cout << endl;
+    }
+}
+
 int main() {
     int minBound, maxBound;
     cin >> minBound >> maxBound;
@@ -47,5 +58,6 @@ int main() {
     int bars[arrayWidth][2];
     initializeArray(bars, arrayWidth, minBound);
     readData(bars, arrayWidth);
+    drawBars(bars, arrayWidth);
     return 0;
 }
