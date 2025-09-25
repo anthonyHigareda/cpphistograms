@@ -41,14 +41,48 @@ void readData(int data[][2], int xSize) { // Reads data from input, validates it
     }
 }
 
-void drawBars(int data[][2], int xSize) {
-    for (int i = xSize - 1; i >= 0; i--) {
-        cout << setw(3) << data[i][0] << " |";
-        for (int j = 0; j < data[i][1]; j++) {
+void drawBars(int data[][2], int xSize) { // Draws the horizontal bars
+    for (int i = xSize - 1; i >= 0; i--) { // Iterates through the array starting with the largest value
+        cout << setw(3) << data[i][0] << " |"; // Prints the y-axis label
+        for (int j = 0; j < data[i][1]; j++) { // Prints the correct amount of # per amount of occurrences
             cout << "#";
         }
         cout << endl;
     }
+}
+
+int getLongestBar(int data[][2], int xSize) { // Retrieves the size of the longest bar on the histogram
+    int longestBar = 0;
+    for (int i = 0; i < xSize; i++) { // Standard "max value" logic
+        if (data[i][1] > longestBar) {
+            longestBar = data[i][1];
+        }
+    }
+    return longestBar;
+}
+
+void drawXAxis(int data[][2], int xSize) { // Draws the x-axis of the histogram
+    int longestBar = getLongestBar(data, xSize); // Gets the length of the longest bar
+    cout << "    +----+----+"; // Draws the default minimum width of 10
+    longestBar -= 10;
+    while (longestBar > 0) { // Repeats until we have drawn to a multiple of 10 past the longest bar
+        cout << "----+----+";
+        longestBar -= 10;
+    }
+    cout << endl;
+}
+
+void drawXAxisLabels(int data[][2], int xSize) { // Draws the labels for the x-axis
+    int longestBar = getLongestBar(data, xSize); // Gets the length of the longest bar
+    cout << "    0    5    10"; // Draws the default minimum width of 10
+    longestBar -= 10;
+    int labelNumber = 15; // Variable that increments by 5 for each tick mark
+    while (longestBar > 0) { // Repeats until we have drawn to a multiple of 10 past the longest bar
+        cout << "   " << labelNumber << "   " << labelNumber + 5; // Prints whitespace and the tick labels
+        longestBar -= 10;
+        labelNumber += 10;
+    }
+    cout << endl;
 }
 
 int main() {
@@ -59,5 +93,7 @@ int main() {
     initializeArray(bars, arrayWidth, minBound);
     readData(bars, arrayWidth);
     drawBars(bars, arrayWidth);
+    drawXAxis(bars, arrayWidth);
+    drawXAxisLabels(bars, arrayWidth);
     return 0;
 }
