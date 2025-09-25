@@ -86,14 +86,14 @@ void drawXAxisLabels(int data[][2], int xSize) { // Draws the labels for the x-a
 }
 
 int main() {
-    int minBound, maxBound;
-    cin >> minBound >> maxBound;
-    const int arrayWidth = maxBound - minBound + 1;
-    int bars[arrayWidth][2];
-    initializeArray(bars, arrayWidth, minBound);
-    readData(bars, arrayWidth);
-    drawBars(bars, arrayWidth);
-    drawXAxis(bars, arrayWidth);
-    drawXAxisLabels(bars, arrayWidth);
+    int minBound, maxBound; // Minimum and maximum values possible in this histogram
+    cin >> minBound >> maxBound; // Reads min and max from input
+    const int arrayWidth = maxBound - minBound + 1; // Calculates the array's width based on the bounds
+    int bars[arrayWidth][2]; // Declares the data array
+    initializeArray(bars, arrayWidth, minBound); // Initializes the data within the array
+    readData(bars, arrayWidth); // Reads data from input
+    drawBars(bars, arrayWidth); // Draws the bars of the histogram
+    drawXAxis(bars, arrayWidth); // Draws the x-axis tick marks
+    drawXAxisLabels(bars, arrayWidth); // Draws the labels for each tick mark
     return 0;
 }
